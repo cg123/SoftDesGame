@@ -2,10 +2,18 @@
 using System.Collections;
 using System.Linq;
 
+[System.Serializable()]
+public class TileType
+{
+    public Sprite texture;
+    public bool solid;
+}
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class LoadMap : MonoBehaviour
 {
     public TextAsset map;
-    public Sprite[] tileSprites;
+    public TileType[] tileSprites;
     GameObject[,] tiles;
 
     void DoLoadMap()
@@ -28,13 +36,15 @@ public class LoadMap : MonoBehaviour
                 int tileNum = int.Parse(chunks[i]);
                 if (tileNum < 0) continue;
 
-                Debug.Log(i.ToString() + ", " + j.ToString());
-                Debug.Log(chunks[i]);
                 tiles[i, j] = new GameObject(i.ToString() + ", " + j.ToString());
                 tiles[i, j].transform.parent = transform;
                 tiles[i, j].transform.localPosition = new Vector3(i, -j, 50);
                 tiles[i, j].AddComponent<SpriteRenderer>();
-                tiles[i, j].GetComponent<SpriteRenderer>().sprite = tileSprites[tileNum];
+                tiles[i, j].GetComponent<SpriteRenderer>().sprite = tileSprites[tileNum].texture;
+                if (tileSprites[tileNum].solid)
+                {
+                    tiles[i, j].AddComponent<BoxCollider2D>();
+                }
             }
         }
     }
