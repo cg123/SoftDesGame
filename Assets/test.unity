@@ -1982,6 +1982,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1689288068}
   - 114: {fileID: 1689288069}
+  - 114: {fileID: 1689288070}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -2023,6 +2024,18 @@ MonoBehaviour:
     solid: 0
   - texture: {fileID: 21300006, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
     solid: 0
+--- !u!114 &1689288070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689288067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a109cad8661264bb707c3c839891d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonDotPy: {fileID: 4900000, guid: af92efaac111318468b49334ae4a2a40, type: 3}
 --- !u!1 &1703358657
 GameObject:
   m_ObjectHideFlags: 0
