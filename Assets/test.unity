@@ -177,6 +177,10 @@ Prefab:
       propertyPath: attachPoint.y
       value: -.519999981
       objectReference: {fileID: 0}
+    - target: {fileID: 11400018, guid: ffce14be46d64e64cb68df1eab29bd2b, type: 2}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffce14be46d64e64cb68df1eab29bd2b, type: 2}
   m_RootGameObject: {fileID: 1565830036}
@@ -1053,7 +1057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a25f9ff7ad5e0428ba6efbaa446805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
+  health: 10
   explosionTemplate: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!1 &1565830036
 GameObject:

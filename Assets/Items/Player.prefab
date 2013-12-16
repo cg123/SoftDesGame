@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 400008}
-  attachPoint: {x: -.325504094, y: -.674898624, z: -.200000003}
+  attachPoint: {x: -.325504094, y: -.519999981, z: -.200000003}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -684,7 +684,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fee611007785040a4c4847c291e181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pc: {fileID: 11400018}
+  started: 0
+  baconCount: 0
+  phc: {fileID: 11400018}
+  deadTexture: {fileID: 2800000, guid: 0b200ab56914e64418ff75b967922d97, type: 3}
+  notDeadTexture: {fileID: 2800000, guid: 52431a0246d135e4f8adc0a2781be73c, type: 3}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -713,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a25f9ff7ad5e0428ba6efbaa446805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
+  health: 10
   explosionTemplate: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!124 &12400000
 Behaviour:
