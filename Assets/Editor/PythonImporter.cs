@@ -8,7 +8,7 @@ public class CustomResxImporter : AssetPostprocessor
     {
         foreach (string asset in importedAssets)
         {
-            if (asset.EndsWith(".py"))
+            if (asset.EndsWith(".py") && asset.Contains("dungeon_generator"))
             {
                 string filePath = asset.Substring(0, asset.Length - Path.GetFileName(asset).Length) + "../";
                 string newFileName = filePath + Path.GetFileNameWithoutExtension(asset) + ".py.txt";
