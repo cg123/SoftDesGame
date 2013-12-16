@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a109cad8661264bb707c3c839891d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonDotPy: {fileID: 4900000, guid: af92efaac111318468b49334ae4a2a40, type: 3}
+  dungeonDotPy: {fileID: 4900000, guid: d443e0cedc9afb746b306977950c6fa4, type: 3}
   ui: {fileID: 1404880284}
   floorSprites:
   - {fileID: 21300000, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}

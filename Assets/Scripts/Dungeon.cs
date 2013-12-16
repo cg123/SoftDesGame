@@ -34,8 +34,8 @@ public class Dungeon : MonoBehaviour {
         engine.Runtime.IO.SetOutput(stdout, System.Text.Encoding.UTF8);
 
         ICollection<string> searchPath = engine.GetSearchPaths();
-        searchPath.Add(Application.dataPath + "/IronPythonLib");
-        Debug.Log(Application.dataPath + "/IronPythonLib");
+        searchPath.Add(Application.streamingAssetsPath + "/IronPythonLib");
+        Debug.Log(Application.streamingAssetsPath + "/IronPythonLib");
         engine.SetSearchPaths(searchPath);
         scope = engine.CreateScope();
         ScriptSource src = engine.CreateScriptSourceFromString(dungeonDotPy.text, dungeonDotPy.name, SourceCodeKind.File);
