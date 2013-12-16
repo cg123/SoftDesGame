@@ -26,6 +26,15 @@ public class Dungeon : MonoBehaviour {
 
     public Transform player;
 
+    static char GetTile(string[] lines, int i, int j)
+    {
+        if (j < 0 || j >= lines.Length || i < 0 || i >= lines[j].Length)
+        {
+            return 'x';
+        }
+        return lines[j][i];
+    }
+
     public void Awake()
     {
         stdout = new MemoryStream();
@@ -47,26 +56,28 @@ public class Dungeon : MonoBehaviour {
         int width = lines[0].Length,
             height = lines.Length;
 
-        tiles = new GameObject[width, height];
+        tiles = new GameObject[width+2, height+2];
         int i, j;
-        for (j = 0; j < height; j++)
+        for (j = -1; j < height + 1; j++)
         {
-            for (i = 0; i < width; i++)
+            for (i = -1; i < width + 1; i++)
             {
-                tiles[i, j] = new GameObject(i.ToString() + ", " + j.ToString());
-                tiles[i, j].transform.parent = transform;
-                tiles[i, j].transform.localPosition = new Vector3(i, -j, 50);
-                tiles[i, j].transform.localScale = new Vector3(1, 1, 1);
-                tiles[i, j].AddComponent<SpriteRenderer>();
+                tiles[i+1, j+1] = new GameObject(i.ToString() + ", " + j.ToString());
+                GameObject tileObj = tiles[i + 1, j + 1];
+                tileObj.transform.parent = transform;
+                tileObj.transform.localPosition = new Vector3(i, -j, 50);
+                tileObj.transform.localScale = new Vector3(1, 1, 1);
+                tileObj.AddComponent<SpriteRenderer>();
 
-                if (lines[j][i] == '@')
+                char tile = GetTile(lines, i, j);
+                if (tile == '@')
                 {
                     GameObject jesus = Instantiate(jesusTemplate) as GameObject;
                     jesus.transform.parent = transform;
                     jesus.transform.localPosition = new Vector3(i, -j, 40);
                     jesus.transform.localScale = Vector3.one;
                 }
-                else if (lines[j][i] == '#')
+                else if (tile == '#')
                 {
                     GameObject bacon = Instantiate(baconTemplate) as GameObject;
                     bacon.GetComponent<Pickup>().ui = ui;
@@ -75,7 +86,7 @@ public class Dungeon : MonoBehaviour {
                     bacon.transform.localScale = Vector3.one;
                     ui.baconCount++;
                 }
-                else if (lines[j][i] == '%')
+                else if (tile == '%')
                 {
                     player.rigidbody2D.isKinematic = true;
                     player.position = new Vector3(i, -j, 40);
@@ -83,11 +94,11 @@ public class Dungeon : MonoBehaviour {
                 }
 
                 Sprite sprite;
-                if (lines[j][i] == 'x')
+                if (tile == 'x')
                 {
                     sprite = wallSprite;
-                    tiles[i, j].AddComponent<BoxCollider2D>();
-                    tiles[i, j].GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
+                    tileObj.AddComponent<BoxCollider2D>();
+                    tileObj.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
                 }
                 /*else if (lines[j][i] == ' ')
                 {
@@ -101,7 +112,7 @@ public class Dungeon : MonoBehaviour {
                 {
                     sprite = floorSprites[Random.Range(0, floorSprites.Length - 1)];
                 }
-                tiles[i, j].GetComponent<SpriteRenderer>().sprite = sprite;
+                tileObj.GetComponent<SpriteRenderer>().sprite = sprite;
             }
         }
         ui.started = true;
