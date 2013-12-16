@@ -24,6 +24,7 @@ public class Arm : MonoBehaviour
         {
             child.parent = transform;
             child.localPosition = attachPoint;
+            child.localRotation = Quaternion.identity;
 
             lastChild = child;
         }

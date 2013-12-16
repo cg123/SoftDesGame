@@ -14,6 +14,7 @@ public class Dungeon : MonoBehaviour {
 
     public ScriptEngine engine;
     public ScriptScope scope;
+    public UserInterface ui;
     long lastReadIdx;
     MemoryStream stdout;
 
@@ -21,6 +22,9 @@ public class Dungeon : MonoBehaviour {
     public Sprite wallSprite, questSprite, itemSprite;
     GameObject[,] tiles;
     public GameObject jesusTemplate;
+    public GameObject baconTemplate;
+
+    public Transform player;
 
     public void Awake()
     {
@@ -62,6 +66,21 @@ public class Dungeon : MonoBehaviour {
                     jesus.transform.localPosition = new Vector3(i, -j, 40);
                     jesus.transform.localScale = Vector3.one;
                 }
+                else if (lines[j][i] == '#')
+                {
+                    GameObject bacon = Instantiate(baconTemplate) as GameObject;
+                    bacon.GetComponent<Pickup>().ui = ui;
+                    bacon.transform.parent = transform;
+                    bacon.transform.localPosition = new Vector3(i, -j, 40);
+                    bacon.transform.localScale = Vector3.one;
+                    ui.baconCount++;
+                }
+                else if (lines[j][i] == '%')
+                {
+                    player.rigidbody2D.isKinematic = true;
+                    player.position = new Vector3(i, -j, 40);
+                    player.rigidbody2D.isKinematic = false;
+                }
 
                 Sprite sprite;
                 if (lines[j][i] == 'x')
@@ -69,10 +88,6 @@ public class Dungeon : MonoBehaviour {
                     sprite = wallSprite;
                     tiles[i, j].AddComponent<BoxCollider2D>();
                     tiles[i, j].GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
-                }
-                else if (lines[j][i] == '#')
-                {
-                    sprite = questSprite;
                 }
                 /*else if (lines[j][i] == ' ')
                 {
@@ -89,6 +104,7 @@ public class Dungeon : MonoBehaviour {
                 tiles[i, j].GetComponent<SpriteRenderer>().sprite = sprite;
             }
         }
+        ui.started = true;
     }
 
     void Update()

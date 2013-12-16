@@ -21,6 +21,6 @@ class PlayerController(MonoBehaviour):
 		if lastHeading < 0:
 			lastHeading += 360;
 		rigidbody2D.AddForce(Vector2(x, y) * acceleration - rigidbody2D.velocity * damping);
-		angleOffset = /*lastHeading - */transform.localEulerAngles.z
+		angleOffset = -transform.localEulerAngles.z
 		angleOffset = ((angleOffset + 180) % 360) - 180;
-		rigidbody2D.AddTorque(-angleOffset * turnConstant - rigidbody2D.angularVelocity * angularDamping);
+		rigidbody2D.AddTorque(angleOffset * turnConstant - rigidbody2D.angularVelocity * angularDamping);

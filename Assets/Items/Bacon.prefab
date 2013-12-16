@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 60: {fileID: 6000000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Bacon
   m_TagString: Untagged
@@ -60,6 +61,18 @@ PolygonCollider2D:
       - {x: .078125, y: -.109375}
       - {x: .3984375, y: -.0859375}
       - {x: .4609375, y: -.0234375}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137c608cfc6c34149bfa3ac595159b29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionTemplate: {fileID: 100000, guid: bd943c792514675e464dfc7a8c26d3e0, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

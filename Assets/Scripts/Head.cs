@@ -13,6 +13,7 @@ public class Head : MonoBehaviour
         {
             arms[i].transform.parent = transform;
             arms[i].transform.localPosition = armAttachPoints[i];
+            arms[i].transform.localRotation = Quaternion.identity;
         }
     }
 
