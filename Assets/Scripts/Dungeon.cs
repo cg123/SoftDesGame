@@ -17,6 +17,10 @@ public class Dungeon : MonoBehaviour {
     long lastReadIdx;
     MemoryStream stdout;
 
+    public Sprite[] floorSprites;
+    public Sprite wallSprite, questSprite, itemSprite;
+    GameObject[,] tiles;
+    public GameObject jesusTemplate;
 
     public void Awake()
     {
@@ -35,7 +39,56 @@ public class Dungeon : MonoBehaviour {
         Debug.Log(dungeonDotPy.name);
 
         string res = engine.Execute<string>("make_dungeon_map()", scope);
-        Debug.Log(res);
+        string[] lines = res.Trim().Split('\r', '\n');
+        int width = lines[0].Length,
+            height = lines.Length;
+
+        tiles = new GameObject[width, height];
+        int i, j;
+        for (j = 0; j < height; j++)
+        {
+            for (i = 0; i < width; i++)
+            {
+                tiles[i, j] = new GameObject(i.ToString() + ", " + j.ToString());
+                tiles[i, j].transform.parent = transform;
+                tiles[i, j].transform.localPosition = new Vector3(i, -j, 50);
+                tiles[i, j].transform.localScale = new Vector3(1, 1, 1);
+                tiles[i, j].AddComponent<SpriteRenderer>();
+
+                if (lines[j][i] == '@')
+                {
+                    GameObject jesus = Instantiate(jesusTemplate) as GameObject;
+                    jesus.transform.parent = transform;
+                    jesus.transform.localPosition = new Vector3(i, -j, 40);
+                    jesus.transform.localScale = Vector3.one;
+                }
+
+                Sprite sprite;
+                if (lines[j][i] == 'x')
+                {
+                    sprite = wallSprite;
+                    tiles[i, j].AddComponent<BoxCollider2D>();
+                    tiles[i, j].GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
+                }
+                else if (lines[j][i] == '#')
+                {
+                    sprite = questSprite;
+                }
+                /*else if (lines[j][i] == ' ')
+                {
+                    sprite = floorSprite;
+                }
+                else if (lines[j][i] == '-')
+                {
+                    sprite = tunnelSprite;
+                }*/
+                else
+                {
+                    sprite = floorSprites[Random.Range(0, floorSprites.Length - 1)];
+                }
+                tiles[i, j].GetComponent<SpriteRenderer>().sprite = sprite;
+            }
+        }
     }
 
     void Update()
@@ -48,6 +101,7 @@ public class Dungeon : MonoBehaviour {
     }
     string ReadNewData()
     {
+        if (stdout == null) return null;
         long length = stdout.Length - lastReadIdx;
         byte[] data = new byte[length];
         stdout.Seek(lastReadIdx, SeekOrigin.Begin);

@@ -1260,6 +1260,7 @@ GameObject:
   - 81: {fileID: 1404880277}
   - 114: {fileID: 1404880282}
   - 82: {fileID: 1404880283}
+  - 114: {fileID: 1404880284}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1398,6 +1399,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1404880284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1404880276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75fee611007785040a4c4847c291e181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pc: {fileID: 1446886868}
 --- !u!1 &1406728628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,6 +1526,7 @@ GameObject:
   - 60: {fileID: 1446886865}
   - 50: {fileID: 1446886866}
   - 114: {fileID: 1446886867}
+  - 114: {fileID: 1446886868}
   m_Layer: 0
   m_Name: Skull
   m_TagString: Player
@@ -1682,6 +1696,18 @@ MonoBehaviour:
   turnConstant: .00999999978
   lastHeading: 0
   angleOffset: 0
+--- !u!114 &1446886868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446886861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a25f9ff7ad5e0428ba6efbaa446805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 25
 --- !u!1001 &1468943589
 Prefab:
   m_ObjectHideFlags: 0
@@ -1981,10 +2007,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1689288068}
-  - 114: {fileID: 1689288069}
   - 114: {fileID: 1689288070}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Dungeon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1998,32 +2023,9 @@ Transform:
   m_GameObject: {fileID: 1689288067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: 4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &1689288069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1689288067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68392b12bd23dd740be89abed58d731f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  map: {fileID: 4900000, guid: 7a91e7e2b121c9741a4f5d6cde860892, type: 3}
-  tileSprites:
-  - texture: {fileID: 21300002, guid: 98d5a51dd1ef2454bbab9d68d8eee8b0, type: 3}
-    solid: 1
-  - texture: {fileID: 21300000, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
-    solid: 0
-  - texture: {fileID: 21300002, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
-    solid: 0
-  - texture: {fileID: 21300004, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
-    solid: 0
-  - texture: {fileID: 21300006, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
-    solid: 0
 --- !u!114 &1689288070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,6 +2038,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dungeonDotPy: {fileID: 4900000, guid: af92efaac111318468b49334ae4a2a40, type: 3}
+  floorSprites:
+  - {fileID: 21300000, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
+  - {fileID: 21300002, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
+  - {fileID: 21300004, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
+  - {fileID: 21300006, guid: 38aa7765c66406e40aeef6aabd329808, type: 3}
+  - {fileID: 21300000, guid: 2c25c7cf0c85bf94dbca91988968691a, type: 3}
+  - {fileID: 21300002, guid: 2c25c7cf0c85bf94dbca91988968691a, type: 3}
+  - {fileID: 21300004, guid: 2c25c7cf0c85bf94dbca91988968691a, type: 3}
+  - {fileID: 21300006, guid: 2c25c7cf0c85bf94dbca91988968691a, type: 3}
+  wallSprite: {fileID: 21300002, guid: 98d5a51dd1ef2454bbab9d68d8eee8b0, type: 3}
+  questSprite: {fileID: 21300008, guid: 98d5a51dd1ef2454bbab9d68d8eee8b0, type: 3}
+  itemSprite: {fileID: 21300010, guid: 98d5a51dd1ef2454bbab9d68d8eee8b0, type: 3}
+  jesusTemplate: {fileID: 100000, guid: 56ae62b8eedd29d43a8233400563677f, type: 2}
 --- !u!1 &1703358657
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,15 @@
 ﻿import UnityEngine
 
 [RequireComponent(typeof(Rigidbody2D))]
-class PlayerController (MonoBehaviour):
+class PlayerController(MonoBehaviour):
 	public acceleration as single = 15.0f;
 	public damping as single = 3.0f;
 	public angularDamping as single = 3.0f;
 	public turnConstant as single = 0.1f;
 	public lastHeading as single = 0;
 	public angleOffset as single = 0;
-	def Update():
+
+	def Update() as void:
 		x as single = Input.GetAxis("Horizontal")
 		y as single = Input.GetAxis("Vertical")
 		if x < -0.05:
