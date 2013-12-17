@@ -43,6 +43,7 @@ public class UserInterface : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         Debug.Log("Quit()");
-        Application.Quit();
+        Application.LoadLevel(0);
+        //Application.Quit();
     }
 }
