@@ -18,8 +18,7 @@ public class Dungeon
                 {"roomHeightMin", 3},
                 {"roomHeightMax", 10},
                 {"corridorLengthMin", 3},
-                {"corridorLengthMax", 10},
-                {"placementTries", 10}
+                {"corridorLengthMax", 10}
             };
 
         public GenerationOptions()
@@ -333,7 +332,7 @@ public class Dungeon
                 // Try to generate a room
                 int cWidth = Random.Range(opts["roomWidthMin"], opts["roomWidthMax"]+1),
                     cHeight = Random.Range(opts["roomHeightMin"], opts["roomHeightMax"]+1);
-                // Calculate tangent to connection point
+                // Get direction we can safely translate in
                 int tX = Mathf.Abs(unitVectors[direction].y) > 0 ? -1 : 0,
                     tY = Mathf.Abs(unitVectors[direction].x) > 0 ? -1 : 0;
                 ptX += tX * Random.Range(0, cWidth - 1);
