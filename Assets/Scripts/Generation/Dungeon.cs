@@ -175,51 +175,6 @@ public class Dungeon
         rooms = new List<Room>();
     }
 
-    void GenerateRooms(GenerationOptions opts)
-    {
-        // Generate rooms
-        int i;
-        for (i = 0; i < opts["numRooms"]; i++)
-        {
-            int width = Random.Range(opts["roomWidthMin"], opts["roomWidthMax"] + 1),
-                height = Random.Range(opts["roomHeightMin"], opts["roomHeightMax"] + 1);
-
-            Room r = new Room();
-            r.width = width;
-            r.height = height;
-
-            // Try 'placementTries' times to find a location that doesn't intersect
-            // any existing rooms. If one is not found, fuck it, put it in the last
-            // place we checked.
-            int triesLeft = opts["placementTries"];
-            while (triesLeft > 0)
-            {
-                // Generate candidate location
-                r.x0 = Random.Range(0, width - r.width);
-                r.y0 = Random.Range(0, height - r.height);
-
-                // Check for intersection with other rooms
-                if (!Collides(r))
-                {
-                    break;
-                }
-                triesLeft--;
-            }
-
-            // Add to the room list
-            rooms.Add(r);
-        }
-    }
-
-    void GenerateHallways(GenerationOptions opts)
-    {
-        Room startRoom = rooms[Random.Range(0, rooms.Count)];
-        startX = Random.Range(startRoom.x0, startRoom.x0 + startRoom.width);
-        startY = Random.Range(startRoom.y0, startRoom.y0 + startRoom.height);
-
-    }
-
-
     Room RandomRoom(bool includeRooms = true)
     {
         if (!includeRooms)
@@ -392,7 +347,7 @@ public class Dungeon
     {
         // Empty rooms and hallways
         rooms.Clear();
-        //hallways.Clear();
+        hallways.Clear();
 
         // Clear out tile type array
         int i, j;
@@ -404,8 +359,6 @@ public class Dungeon
             }
         }
 
-        //GenerateRooms(opts);
-        //GenerateHallways(opts);
         GenerateTree(opts);
 
         foreach (Room r in rooms.Union(hallways.Select((h) => (Room)h)))
