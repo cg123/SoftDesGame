@@ -9,7 +9,7 @@ using IronPython.Runtime;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 
-public class Dungeon : MonoBehaviour {
+public class PyDungeon : MonoBehaviour {
     public TextAsset dungeonDotPy;
 
     public ScriptEngine engine;
